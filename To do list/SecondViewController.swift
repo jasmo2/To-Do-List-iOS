@@ -14,12 +14,17 @@ class SecondViewController: UIViewController {
     @IBOutlet var task: UITextField!
     //var task:FirstViewController = FirstViewController()
     @IBAction func addTask(sender: AnyObject) {
+        
         globalTask.append(task.text)
+        
         task.text = ""
+        
+        NSUserDefaults.standardUserDefaults().setObject(globalTask, forKey: "toDoArray")
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+               // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
