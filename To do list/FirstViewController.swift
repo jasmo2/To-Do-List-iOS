@@ -44,6 +44,17 @@ UIViewController, UITableViewDelegate {
         cell.textLabel?.text = globalTask[indexPath.row]
         return cell
     }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
+        if editingStyle == UITableViewCellEditingStyle.Delete{
+            globalTask.removeAtIndex(indexPath.row)
+        }
+        
+        NSUserDefaults.standardUserDefaults().setObject(globalTask, forKey: "toDoArray")
+        
+        toDoListTable.reloadData()
+    }
+//    optional func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath)
 
     override func viewDidAppear(animated: Bool) {
         toDoListTable.reloadData()
