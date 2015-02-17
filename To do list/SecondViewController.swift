@@ -10,8 +10,12 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
-    @IBOutlet var task: UIView!
+    
+    @IBOutlet var task: UITextField!
+    //var task:FirstViewController = FirstViewController()
     @IBAction func addTask(sender: AnyObject) {
+        globalTask.append(task.text)
+        task.text = ""
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +25,15 @@ class SecondViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.
+    {
+        textField.resignFirstResponder()
+        return true;
     }
 
 
